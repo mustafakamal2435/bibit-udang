@@ -58,7 +58,9 @@
   <section>
     <h2>Selamat Datang!</h2>
     <p>Website ini membantu petambak dalam menentukan bibit udang vaname terbaik menggunakan metode MAUT.</p>
-    <button onclick="alert('Fitur perhitungan MAUT sedang dikembangkan!')">Mulai Penilaian</button>
+    <a href="hitung.html">
+  <button>Mulai Penilaian</button>
+</a>>Mulai Penilaian</button>
   </section>
 
   <footer>
