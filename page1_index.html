@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SPK MAUT - Pemilihan Bibit Udang Vaname Unggul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --sea-500: #0077b6;
+      --sea-400: #0096c7;
+      --sea-100: #e6f7fb;
+      --muted: #6b7280;
+      --glass: rgba(255,255,255,0.6);
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg, #f7fcff 0%, #eaf8ff 60%);color:#07203a;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1200px;margin:0 auto}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--sea-400),var(--sea-500));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(3, 44, 71, 0.12)}
+    .logo svg{width:34px;height:34px}
+    .brand h1{font-size:18px;margin:0;color:white}
+    .brand p{margin:0;font-size:12px;color:rgba(255,255,255,0.85)}
+    nav{display:flex;gap:12px}
+    .btn{background:transparent;border:2px solid transparent;padding:8px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn.primary{background:var(--sea-500);color:white;border-color:transparent;box-shadow:0 6px 16px rgba(0,119,182,0.15)}
+    .btn.ghost{background:transparent;border-color:rgba(7,32,58,0.06);color:var(--sea-500)}
+    .hero{max-width:1200px;margin:20px auto;padding:36px;border-radius:18px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .card{background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0.8));backdrop-filter:blur(6px);padding:28px;border-radius:14px;border:1px solid rgba(7,32,58,0.06)}
+    .hero-left h2{margin:0;font-size:28px;color:#023047}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:14px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border:1px solid #dbe7f0;padding:6px;text-align:center;font-size:13px}
+    th{background:var(--sea-100)}
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .result{margin-top:14px;padding:12px;border-radius:10px;background:#fff;font-weight:600}
+    footer{max-width:1200px;margin:28px auto;padding:18px 28px;color:var(--muted);font-size:13px}
+    canvas{margin-top:20px;width:100%!important;max-height:300px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.logo{width:48px;height:48px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(6 6)">
+            <path d="M22 4c6 0 10 4 10 10s-4 10-10 10-10-4-10-10S16 4 22 4z" fill="white" opacity="0.06"/>
+            <path d="M28 12c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" fill="white"/>
+            <path d="M8 28c3 0 6-6 12-6s9 6 14 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1>SPK MAUT - Bibit Udang Vaname</h1>
+        <p>Implementasi Metode MAUT untuk Mendukung Keputusan</p>
+      </div>
+    </div>
+    <nav>
+      <button class="btn ghost">Tentang</button>
+      <button class="btn ghost">Metode</button>
+      <button class="btn primary" id="btn-start">Mulai Penilaian</button>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="hero-left card">
+      <h2>Menentukan Bibit Udang Vaname Unggul dengan MAUT</h2>
+      <p class="subtitle">SPK ini membantu menentukan bibit terbaik berdasarkan 10 kriteria utama dengan metode MAUT (Multi-Attribute Utility Theory).</p>
+
+      <table>
+        <thead><tr><th>No</th><th>Kriteria</th><th>Bobot</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Lokasi Tambak</td><td>0.10</td></tr>
+          <tr><td>2</td><td>Suhu Air</td><td>0.10</td></tr>
+          <tr><td>3</td><td>Iklim / Kondisi Air</td><td>0.10</td></tr>
+          <tr><td>4</td><td>Kondisi Tanah</td><td>0.10</td></tr>
+          <tr><td>5</td><td>Warna Tubuh</td><td>0.10</td></tr>
+          <tr><td>6</td><td>Pergerakan Aktif</td><td>0.10</td></tr>
+          <tr><td>7</td><td>Bentuk Tubuh Normal</td><td>0.10</td></tr>
+          <tr><td>8</td><td>Usus Penuh</td><td>0.10</td></tr>
+          <tr><td>9</td><td>Ekor Mengembang</td><td>0.10</td></tr>
+          <tr><td>10</td><td>Mata Cerah</td><td>0.10</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="card" aria-labelledby="form-title">
+      <div class="calc-title">
+        <div style="width:46px;height:46px;border-radius:10px;background:var(--sea-100);display:flex;align-items:center;justify-content:center;font-weight:700">MAUT</div>
+        <div>
+          <h3 id="form-title">Penilaian Alternatif</h3>
+          <div style="font-size:12px;color:var(--muted)">Masukkan nilai untuk 3 alternatif bibit (1–10).</div>
+        </div>
+      </div>
+      <div id="input-area"></div>
+      <div class="actions">
+        <button class="btn primary" id="calc">Hitung MAUT</button>
+        <button class="btn ghost" id="reset">Reset</button>
+      </div>
+      <div class="result" id="result">Hasil: -</div>
+      <canvas id="chart"></canvas>
+    </aside>
+  </main>
+
+  <footer>© 2025 - Sistem Pendukung Keputusan MAUT | Fakultas / Peneliti</footer>
+
+  <script>
+    const kriteria=["Lokasi","Suhu","Iklim","Tanah","Warna","Gerak","Bentuk","Usus","Ekor","Mata"];
+    const bobot=[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1];
+
+    const inputArea=document.getElementById('input-area');
+    let html='<table><thead><tr><th>Kriteria</th><th>Alt 1</th><th>Alt 2</th><th>Alt 3</th></tr></thead><tbody>';
+    kriteria.forEach((k,i)=>{
+      html+=`<tr><td>${k}</td>`;
+      for(let a=1;a<=3;a++){
+        html+=`<td><input type="number" id="a${a}k${i}" min="1" max="10" value="7" style="width:60px;text-align:center"></td>`;
+      }
+      html+='</tr>';
+    });
+    html+='</tbody></table>';
+    inputArea.innerHTML=html;
+
+    function normalisasi(n){return (n-1)/9;}
+
+    let chartInstance=null;
+
+    function hitungMAUT(){
+      const alt=[[],[],[]];
+      for(let i=0;i<kriteria.length;i++){
+        for(let a=0;a<3;a++){
+          alt[a][i]=Number(document.getElementById(`a${a+1}k${i}`).value||0);
+        }
+      }
+      const skor=[0,0,0];
+      for(let a=0;a<3;a++){
+        for(let i=0;i<kriteria.length;i++){
+          skor[a]+=normalisasi(alt[a][i])*bobot[i];
+        }
+      }
+      const hasil=skor.map((s,i)=>({alt:`Alternatif ${i+1}`,skor:Math.round(s*100)/100}));
+      hasil.sort((a,b)=>b.skor-a.skor);
+      let tabel='<table><thead><tr><th>Peringkat</th><th>Alternatif</th><th>Skor MAUT</th></tr></thead><tbody>';
+      hasil.forEach((h,i)=>{tabel+=`<tr><td>${i+1}</td><td>${h.alt}</td><td>${h.skor}</td></tr>`});
+      tabel+='</tbody></table>';
+      document.getElementById('result').innerHTML='<h4>Hasil Perhitungan MAUT</h4>'+tabel;
+
+      // Gambar grafik
+      const ctx=document.getElementById('chart');
+      if(chartInstance){chartInstance.destroy();}
+      chartInstance=new Chart(ctx,{
+        type:'bar',
+        data:{
+          labels:['Alternatif 1','Alternatif 2','Alternatif 3'],
+          datasets:[{
+            label:'Skor MAUT',
+            data:skor.map(s=>Math.round(s*100)/100),
+            backgroundColor:['#0077b6','#00b4d8','#90e0ef']
+          }]
+        },
+        options:{
+          responsive:true,
+          scales:{y:{beginAtZero:true,max:1}},
+          plugins:{legend:{display:false}}
+        }
+      });
+    }
+
+    document.getElementById('calc').addEventListener('click',hitungMAUT);
+    document.getElementById('reset').addEventListener('click',()=>{location.reload();});
+    document.getElementById('btn-start').addEventListener('click',()=>{
+      document.getElementById('input-area').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
