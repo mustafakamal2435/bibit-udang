@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Petambak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #4ac6ff, #0077b6);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0077b6;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #005f87;
+    }
+
+    .link {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #0077b6;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login Petambak</h2>
+    <input type="text" id="username" placeholder="Nama pengguna">
+    <input type="password" id="password" placeholder="Kata sandi">
+    <button onclick="login()">Masuk</button>
+
+    <div class="link">
+      <a href="#" onclick="lupaPassword()">Lupa Password?</a>
+      <a href="#" onclick="daftarAkun()">Daftar Akun Baru</a>
+    </div>
+  </div>
+
+  <script>
+    // Daftar akun sementara (bisa disimpan di localStorage atau database nanti)
+    const akunPetambak = [
+      { username: "petambak1", password: "12345" },
+      { username: "petambak2", password: "67890" }
+    ];
+
+    function login() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      const akun = akunPetambak.find(a => a.username === user && a.password === pass);
+
+      if (akun) {
+        alert("Login berhasil! Selamat datang, " + user);
+        window.location.href = "dashboard.html"; // arahkan ke dashboard
+      } else {
+        alert("Username atau password salah!");
+      }
+    }
+
+    function lupaPassword() {
+      const email = prompt("Masukkan alamat email Anda untuk reset password:");
+      if (email) {
+        alert("Link reset password telah dikirim ke " + email);
+      }
+    }
+
+    function daftarAkun() {
+      const newUser = prompt("Masukkan username baru:");
+      const newPass = prompt("Masukkan password baru:");
+
+      if (newUser && newPass) {
+        akunPetambak.push({ username: newUser, password: newPass });
+        alert("Akun berhasil dibuat! Silakan login dengan username: " + newUser);
+      }
+    }
+  </script>
+</body>
+</html>
